@@ -1,7 +1,6 @@
 package oop2.module01;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -53,9 +52,12 @@ public class Person {
         return friends;
     }
 
-    public void addFriend(Person b) {
+    public boolean addFriend(Person b) {
+        if (b == this) return false;
+        if (friends.contains(b)) return false;
         friends.add(b);
         b.friends.add(this);
+        return true;
     }
 
     public boolean isFriendsWith(Person b) {
@@ -65,5 +67,9 @@ public class Person {
     public void removeFriend(Person b) {
         this.friends.remove(b);
         b.friends.remove(this);
+    }
+
+    public int getNumberOfFriends() {
+        return friends.size();
     }
 }

@@ -32,7 +32,43 @@ class PersonTest {
     }
 
     @Test
-    void testAddingFriends() {
+    void testNumberOfFriends() {
+        Person a = new Person(20, 60, 1.80);
+        Person b = new Person(22, 67, 1.89);
+        Person c = new Person(24, 80, 1.90);
+
+        assertEquals(0, a.getNumberOfFriends());
+        assertEquals(0, b.getNumberOfFriends());
+        assertEquals(0, c.getNumberOfFriends());
+
+        a.addFriend(b);
+
+        assertEquals(1, a.getNumberOfFriends());
+        assertEquals(1, b.getNumberOfFriends());
+        assertEquals(0, c.getNumberOfFriends());
+
+        a.addFriend(c);
+
+        assertEquals(2, a.getNumberOfFriends());
+        assertEquals(1, b.getNumberOfFriends());
+        assertEquals(1, c.getNumberOfFriends());
+
+        b.addFriend(c);
+
+        assertEquals(2, a.getNumberOfFriends());
+        assertEquals(2, b.getNumberOfFriends());
+        assertEquals(2, c.getNumberOfFriends());
+
+        a.removeFriend(b);
+        a.removeFriend(c);
+
+        assertEquals(0, a.getNumberOfFriends());
+        assertEquals(1, b.getNumberOfFriends());
+        assertEquals(1, c.getNumberOfFriends());
+    }
+
+    @Test
+    void testAddFriend() {
         Person a = new Person(20, 60, 1.80);
         Person b = new Person(22, 67, 1.89);
 
@@ -54,7 +90,7 @@ class PersonTest {
     }
 
     @Test
-    void testRemovingFriends() {
+    void testRemoveFriend() {
         Person a = new Person(20, 60, 1.80);
         Person b = new Person(22, 67, 1.89);
 
@@ -67,5 +103,28 @@ class PersonTest {
 
         assertFalse(a.isFriendsWith(b));
         assertFalse(b.isFriendsWith(a));
+        assertEquals(0, a.getNumberOfFriends());
+    }
+
+    @Test
+    void cantAddYourself() {
+        Person a = new Person(20, 60, 1.80);
+
+        a.addFriend(a);
+
+        assertEquals(0, a.getNumberOfFriends());
+    }
+
+    @Test
+    void cantAddSomeoneTwice() {
+        Person a = new Person(20, 60, 1.80);
+        Person b = new Person(22, 67, 1.89);
+
+        a.addFriend(b);
+        a.addFriend(b);
+        b.addFriend(a);
+
+        assertEquals(1, a.getNumberOfFriends());
+        assertEquals(1, b.getNumberOfFriends());
     }
 }
