@@ -1,7 +1,7 @@
 package oop2.module01;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Dieter Holz
@@ -10,7 +10,7 @@ public class Person {
     private int    age;
     private double weight;
     private double height;
-    private List<Person> friends = new ArrayList<>();
+    private Set<Person> friends = new HashSet<>();
 
     public Person(int age, double weight, double height) {
         this.age    = age;
@@ -48,7 +48,7 @@ public class Person {
         this.height = height;
     }
 
-    public List<Person> getFriends() {
+    public Set<Person> getFriends() {
         return friends;
     }
 
