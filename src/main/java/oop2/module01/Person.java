@@ -1,5 +1,9 @@
 package oop2.module01;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 /**
  * @author Dieter Holz
  */
@@ -7,6 +11,7 @@ public class Person {
     private int    age;
     private double weight;
     private double height;
+    private List<Person> friends = new ArrayList<>();
 
     public Person(int age, double weight, double height) {
         this.age    = age;
@@ -42,5 +47,23 @@ public class Person {
 
     public void setHeight(double height) {
         this.height = height;
+    }
+
+    public List<Person> getFriends() {
+        return friends;
+    }
+
+    public void addFriend(Person b) {
+        friends.add(b);
+        b.friends.add(this);
+    }
+
+    public boolean isFriendsWith(Person b) {
+        return this.friends.contains(b);
+    }
+
+    public void removeFriend(Person b) {
+        this.friends.remove(b);
+        b.friends.remove(this);
     }
 }
